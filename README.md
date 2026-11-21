@@ -2,15 +2,25 @@
 
 A tiny one-page overview of all projects running on `*.jubr.app`, hosted with GitHub Pages.
 
-## Add a project
+## How it updates itself
 
-Edit the `PROJECTS` list in [`index.html`](index.html):
+- **Project list**: every 6 hours, a GitHub Action (`.github/workflows/update.yml`) runs `scripts/update.py`. It finds every subdomain with a valid certificate (via [crt.sh](https://crt.sh) certificate transparency logs), reads each site's `<title>` and meta description, and commits the result into `index.html`. A new project shows up on its own once it has an HTTPS certificate.
+- **Status dots**: checked in the visitor's browser and refreshed every minute (green = reachable, red = not).
 
-```js
-{ name: "My App", sub: "myapp", desc: "What it does" },
+Run it by hand under **Actions → Update project list → Run workflow**, or locally with `python3 scripts/update.py`.
+
+## Customize
+
+Edit `overrides.json`:
+
+```json
+{
+  "hide": ["www", "staging"],
+  "projects": {
+    "gotthard": { "name": "Gotthard Verkehr Live", "desc": "Optional custom description" }
+  }
+}
 ```
-
-`sub` is the subdomain, so this links to `https://myapp.jubr.app`. Each card shows a status dot (green = reachable, red = not).
 
 ## Deploy
 
