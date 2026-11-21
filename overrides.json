@@ -1,0 +1,8 @@
+{
+  "hide": ["www"],
+  "projects": {
+    "clip": { "name": "Clip" },
+    "gotthard": { "name": "Gotthard Verkehr Live" },
+    "learn": { "name": "Study Portal" }
+  }
+}
